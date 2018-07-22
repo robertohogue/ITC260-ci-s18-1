@@ -28,6 +28,12 @@ public function get_news($slug = FALSE)
                 'text' => $this->input->post('text')
             );
 
-            return $this->db->insert('sm18_news', $data);
+            if($this->db->insert('sm18_news', $data))
+            {//data inserted, pass back false
+                return $slug;
+            }else{//failure, pass back false
+                return false;
+            }
+
         }
 }
